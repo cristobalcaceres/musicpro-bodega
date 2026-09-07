@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario</title>
+    <!-- Integración de Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #12141c; }
+        .text-orange { color: #f97316 !important; }
+        .border-orange { border-color: #f97316 !important; }
+        .bg-panel { background-color: #1c202a; }
+        .table-dark { --bs-table-bg: #1c202a; --bs-table-striped-bg: #232834; --bs-table-hover-bg: #232834; }
+    </style>
+</head>
+<body>
+    
+    <header class="p-3 border-bottom border-secondary" style="background-color: #161922;">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="text-orange fw-bold fs-5">MUSIC PRO TOUR</div>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="{% url 'dashboard' %}" class="nav-link text-secondary px-2 pb-1">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'inventario' %}" class="nav-link text-orange border-bottom border-orange border-2 px-2 pb-1">Inventario</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Banner de Alertas -->
+    {% if alertas %}
+    <div class="alert alert-danger rounded-0 border-0 border-bottom border-danger d-flex align-items-center py-2 mb-0" style="background-color: #3f1a1a;">
+        <span class="fw-bold me-2" style="font-size: 0.8rem;">⚠️ ADVERTENCIA DE STOCK MÍNIMO</span>
+        <span class="text-light me-3" style="font-size: 0.8rem;">· Artículos por debajo del nivel mínimo:</span>
+        <div class="d-flex gap-2">
+            {% for alerta in alertas %}
+                <span class="badge border border-danger text-danger" style="background-color: #5c1818;">{{ alerta }}</span>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <main class="container py-5">
+        <h6 class="text-secondary text-uppercase mb-1" style="font-size: 0.75rem; letter-spacing: 1px;">Módulo</h6>
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <h2 class="fw-bold text-white mb-0">Inventario de Equipos</h2>
+            <span class="text-secondary small font-monospace">{{ total_articulos }} artículos</span>
+        </div>
+
+        <div class="card bg-panel border-secondary shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-dark table-hover mb-0 align-middle">
+                    <thead class="text-secondary small" style="border-bottom: 1px solid #495057;">
+                        <tr>
+                            <th class="py-3 px-4 fw-normal text-uppercase">Código</th>
+                            <th class="py-3 px-4 fw-normal text-uppercase">Nombre del Equipo</th>
+                            <th class="py-3 px-4 fw-normal text-uppercase">Categoría</th>
+                            <th class="py-3 px-4 fw-normal text-uppercase">Stock</th>
+                            <th class="py-3 px-4 fw-normal text-uppercase">Ubicación</th>
+                            <th class="py-3 px-4 fw-normal text-uppercase">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody class="border-secondary">
+                        {% for producto in productos %}
+                        <tr>
+                            <td class="px-4 py-3 text-orange font-monospace">{{ producto.codigo }}</td>
+                            <td class="px-4 py-3 text-light">{{ producto.nombre }}</td>
+                            <td class="px-4 py-3">
+                                <span class="badge border border-secondary text-secondary bg-transparent fw-normal">{{ producto.categoria }}</span>
+                            </td>
+                            <td class="px-4 py-3 font-monospace text-white">
+                                {{ producto.stock }} <span class="text-secondary" style="font-size: 0.7rem;">/ min {{ producto.min }}</span>
+                            </td>
+                            <td class="px-4 py-3 text-secondary">{{ producto.ubicacion }}</td>
+                            <td class="px-4 py-3">
+                                {% if producto.estado == 'CRÍTICO' %}
+                                    <span class="badge border border-danger text-danger bg-transparent rounded-pill px-3 py-2">
+                                        <span class="d-inline-block bg-danger rounded-circle me-1" style="width: 6px; height: 6px;"></span> {{ producto.estado }}
+                                    </span>
+                                {% else %}
+                                    <span class="badge border border-success text-success bg-transparent rounded-pill px-3 py-2">
+                                        <span class="d-inline-block bg-success rounded-circle me-1" style="width: 6px; height: 6px;"></span> {{ producto.estado }}
+                                    </span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
