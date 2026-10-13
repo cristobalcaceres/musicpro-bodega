@@ -1,6 +1,7 @@
 import os
 import django
 import random
+import uuid
 from faker import Faker
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'musicpro_site.settings')
@@ -21,8 +22,11 @@ def poblar_bd(cantidad=100):
         stock_act = random.randint(0, 100)
         stock_min = random.randint(5, 20)
         
+        # Se agrega uuid para garantizar que el código sea 100% único y nunca choque
+        codigo_unico = f"MPT-{fake.lexify('???').upper()}-{uuid.uuid4().hex[:6].upper()}"
+        
         prod = Producto(
-            codigo=f"MPT-{fake.lexify('???').upper()}-{random.randint(1000,9999)}",
+            codigo=codigo_unico,
             nombre=fake.catch_phrase(),
             categoria=random.choice(cat_objs),
             stock=stock_act,
@@ -36,4 +40,4 @@ def poblar_bd(cantidad=100):
     print("¡Carga exitosa!")
 
 if __name__ == '__main__':
-    poblar_bd(100) # Cambia este número a 1000, 100000 o 1000000 según te pida el docente[cite: 18, 22]
+    poblar_bd(1000)

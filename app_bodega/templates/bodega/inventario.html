@@ -28,7 +28,6 @@
         </div>
     </header>
 
-    <!-- Banner de Alertas -->
     {% if alertas %}
     <div class="alert alert-danger rounded-0 border-0 border-bottom border-danger d-flex align-items-center py-2 mb-0" style="background-color: #3f1a1a;">
         <span class="fw-bold me-2" style="font-size: 0.8rem;">⚠️ ADVERTENCIA DE STOCK MÍNIMO</span>
@@ -67,20 +66,20 @@
                             <td class="px-4 py-3 text-orange font-monospace">{{ producto.codigo }}</td>
                             <td class="px-4 py-3 text-light">{{ producto.nombre }}</td>
                             <td class="px-4 py-3">
-                                <span class="badge border border-secondary text-secondary bg-transparent fw-normal">{{ producto.categoria }}</span>
+                                <span class="badge border border-secondary text-secondary bg-transparent fw-normal">{{ producto.categoria.nombre }}</span>
                             </td>
                             <td class="px-4 py-3 font-monospace text-white">
-                                {{ producto.stock }} <span class="text-secondary" style="font-size: 0.7rem;">/ min {{ producto.min }}</span>
+                                {{ producto.stock }} <span class="text-secondary" style="font-size: 0.7rem;">/ min {{ producto.stock_minimo }}</span>
                             </td>
                             <td class="px-4 py-3 text-secondary">{{ producto.ubicacion }}</td>
                             <td class="px-4 py-3">
-                                {% if producto.estado == 'CRÍTICO' %}
+                                {% if producto.estado == 'CRITICO' %}
                                     <span class="badge border border-danger text-danger bg-transparent rounded-pill px-3 py-2">
-                                        <span class="d-inline-block bg-danger rounded-circle me-1" style="width: 6px; height: 6px;"></span> {{ producto.estado }}
+                                        <span class="d-inline-block bg-danger rounded-circle me-1" style="width: 6px; height: 6px;"></span> CRÍTICO
                                     </span>
                                 {% else %}
                                     <span class="badge border border-success text-success bg-transparent rounded-pill px-3 py-2">
-                                        <span class="d-inline-block bg-success rounded-circle me-1" style="width: 6px; height: 6px;"></span> {{ producto.estado }}
+                                        <span class="d-inline-block bg-success rounded-circle me-1" style="width: 6px; height: 6px;"></span> ÓPTIMO
                                     </span>
                                 {% endif %}
                             </td>
