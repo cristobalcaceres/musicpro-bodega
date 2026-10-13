@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Logístico | Music Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #12141c; }
+        .text-orange { color: #f97316 !important; }
+        .bg-panel { background-color: #1c202a; }
+    </style>
+</head>
+<body>
+    <header class="p-3 border-bottom border-secondary" style="background-color: #161922;">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="text-orange fw-bold fs-5">MUSIC PRO TOUR <span class="d-block text-secondary" style="font-size: 0.7rem;">2026 LOGISTICS</span></div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <h6 class="text-secondary text-uppercase mb-1" style="font-size: 0.75rem; letter-spacing: 1px;">Acceso Público</h6>
+        <h2 class="fw-bold text-white mb-1">Panel Principal</h2>
+        <p class="text-secondary mb-4 small">Bienvenido. Selecciona el módulo al que deseas ingresar.</p>
+        
+        <div class="row g-4 mt-2">
+            <!-- Módulo Público (Inventario) -->
+            <div class="col-md-6">
+                <a href="{% url 'inventario' %}" class="text-decoration-none">
+                    <div class="card bg-panel border-secondary h-100 transition" style="cursor: pointer;">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-white">Ver Inventario</h5>
+                            <p class="text-orange small text-uppercase mb-3">Acceso Libre (Lectura)</p>
+                            <p class="card-text text-secondary small">Consulta el stock de equipos en bodega. No requiere cuenta para visualizar.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Módulo de Admin (Lleva al Login de Django) -->
+            <div class="col-md-6">
+                <a href="/admin/" class="text-decoration-none">
+                    <div class="card bg-panel border-secondary h-100 transition" style="cursor: pointer; border-left: 4px solid #dc3545 !important;">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-bold text-white">Administración</h5>
+                            <p class="text-danger small text-uppercase mb-3">Acceso Restringido</p>
+                            <p class="card-text text-secondary small">Haz clic aquí para iniciar sesión como administrador y gestionar los equipos.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

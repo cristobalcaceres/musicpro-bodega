@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Administrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #12141c; }
+        .text-orange { color: #f97316 !important; }
+        .border-orange { border-color: #f97316 !important; }
+        .bg-panel { background-color: #1c202a; }
+    </style>
+</head>
+<body>
+    
+    <header class="p-3 border-bottom border-secondary" style="background-color: #161922;">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div class="text-white fw-bold fs-5">PANEL <span class="text-orange">ADMIN</span></div>
+            <ul class="nav">
+                <li class="nav-item"><a href="{% url 'dashboard' %}" class="nav-link text-secondary px-2 pb-1">Ver Sitio Público</a></li>
+                <li class="nav-item"><a href="{% url 'login_admin' %}" class="nav-link text-danger px-2 pb-1">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <h2 class="fw-bold text-white mb-4">Gestión del Sistema</h2>
+        <div class="row g-4">
+            <!-- Acceso a Django Admin Real (Fase 2) -->
+            <div class="col-md-4">
+                <div class="card bg-panel border-secondary h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-white">Base de Datos</h5>
+                        <p class="text-secondary small mb-4">Acceso a Django Admin para realizar el CRUD completo de tablas.</p>
+                        <a href="/admin/" class="btn btn-sm btn-outline-light w-100">Abrir Django Admin</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Acceso al Formulario (Fase 1) -->
+            <div class="col-md-4">
+                <div class="card bg-panel border-secondary h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-white">Registrar Equipo</h5>
+                        <p class="text-secondary small mb-4">Formulario rápido para ingresar nuevo stock a las bodegas.</p>
+                        <a href="{% url 'administracion' %}" class="btn btn-sm text-white w-100" style="background-color: #f97316;">Ir al Formulario</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Reportes -->
+            <div class="col-md-4">
+                <div class="card bg-panel border-secondary h-100 opacity-50">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-white">Reportes Logísticos</h5>
+                        <p class="text-secondary small mb-4">Módulo en construcción para futuras entregas.</p>
+                        <button class="btn btn-sm btn-secondary w-100" disabled>No disponible</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
