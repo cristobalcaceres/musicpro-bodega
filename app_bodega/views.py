@@ -6,7 +6,7 @@ def dashboard(request):
 
 def inventario(request):
     
-    productos_db = Producto.objects.select_related('categoria').all()
+    productos_db = Producto.objects.all()
     
     
     alertas = [prod.codigo for prod in productos_db if prod.stock < prod.stock_minimo]
